@@ -1,0 +1,8 @@
+# Generateb by Ansible deployment role
+# See the full list of options at http://uwsgi-docs.readthedocs.org/en/latest/Options.html
+[uwsgi]
+{% for key, value in item.items() %}
+{% if key != 'config_name' %}
+{{ key }} = {{ value }}
+{% endif %}
+{% endfor %}

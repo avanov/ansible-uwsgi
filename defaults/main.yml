@@ -1,3 +1,15 @@
 ---
+uwsgi_version: "2.0.9"
+uwsgi_pip_path: /usr/bin/pip
+# required for system-wide pip, should be set to ``no`` for virtualenv pip
+uwsgi_pip_use_sudo: yes
+uwsgi_system_config_dir: /etc/uwsgi
 
-
+uwsgi_configs: [
+#    {
+#        # the only required option is ``config_name``
+#        # Will generate the file "{{uwsgi_system_config_dir}}/{{config_name}}.ini"
+#        config_name: default
+#        ...
+#    },
+]

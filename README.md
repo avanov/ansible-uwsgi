@@ -17,8 +17,7 @@ None
 Role Variables
 --------------
 
-Here is the list of all variables and their default values:
-
+You can find a list of all available variables in ``defaults/main.yml``
 
 
 Dependencies
@@ -31,7 +30,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - {role: avanov.uwsgi }
+         - role: avanov.uwsgi
 
 License
 -------

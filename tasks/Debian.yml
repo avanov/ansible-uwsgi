@@ -1,1 +1,33 @@
 ---
+- name: Install uWSGI from PyPI
+  sudo: "{{ uwsgi_pip_use_sudo }}"
+  pip:
+    executable: "{{ uwsgi_pip_path }}"
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    state: present
+  with_items:
+    - name: uwsgi
+      version: "{{ uwsgi_version }}"
+
+- name: Ensure system config dir exists
+  sudo: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    mode: "0755"
+    owner: root
+    group: root
+  with_items:
+    - "{{ uwsgi_system_config_dir }}"
+
+- name: Generate configuration files
+  sudo: yes
+  template:
+    src: "config.ini.j2"
+    dest: "{{ uwsgi_system_config_dir }}/{{ item.config_name }}.ini"
+    mode: "0644"
+    owner: root
+    group: root
+  with_items: uwsgi_configs
