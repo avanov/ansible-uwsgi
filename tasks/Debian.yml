@@ -1,4 +1,14 @@
 ---
+# Without this step, uwsgi will prompt
+# "!!! no internal routing support, rebuild with pcre support !!!"
+- name: Ensure pcre dev packages are present
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - libpcre3
+    - libpcre3-dev
+
 - name: Install uWSGI from PyPI
   sudo: "{{ uwsgi_pip_use_sudo }}"
   pip:
